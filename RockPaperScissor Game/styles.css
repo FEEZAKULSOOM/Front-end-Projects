@@ -1,0 +1,147 @@
+* {
+      margin: 0;
+       padding : 0;text-align: center;
+       
+}
+body {
+      background-color:#fefae0;
+}
+@keyframes neonPulse {
+  0% {
+    box-shadow:
+      0 0 8px rgba(11, 82, 91, 0.6),
+      0 0 16px rgba(11, 82, 91, 0.4);
+  }
+
+  50% {
+    box-shadow:
+      0 0 18px rgba(11, 82, 91, 0.9),
+      0 0 36px rgba(11, 82, 91, 0.6);
+  }
+
+  100% {
+    box-shadow:
+      0 0 8px rgba(11, 82, 91, 0.6),
+      0 0 16px rgba(11, 82, 91, 0.4);
+  }
+}
+
+.choice {
+  animation: neonPulse 2.2s ease-in-out infinite;
+}
+
+
+body {
+  background: linear-gradient(
+    120deg,
+    #a3b18a,
+    #ccd5ae,
+    #a3b18a
+  );
+  background-size: 300% 300%;
+  animation: sageShine 10s ease-in-out infinite;
+}
+
+@keyframes sageShine {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(
+    60deg,
+    transparent,
+    rgba(163, 177, 138, 0.25),
+    transparent
+  );
+  animation: shimmer 8s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes shimmer {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+
+ h1 {
+      background-color: #144552;
+      color:azure;
+      height:5rem;
+      line-height: 5rem;;
+ }
+ 
+
+ .choices {
+      display : flex;
+       align-items:center;
+        justify-content: center;
+        gap: 3rem;
+        margin-top:5rem;
+ }
+ .choice {
+      height:165px;
+       width:165px;
+       border-radius:50%;
+         display : flex;
+       align-items:center;
+        justify-content: center;
+       
+ }
+
+
+ .score-board { display:flex;
+      justify-content:center;
+      align-items:center;
+      font-size: 2rem;
+      margin-top:3rem;
+      gap : 5rem;
+     
+     }
+
+     #user-score , #computer-score {
+          font-size: 4rem;
+     }
+
+ .choice:hover {
+      background-color:#0b525b;
+      cursor:pointer;
+ }
+
+
+
+ .msg-container {
+       margin-top:5rem;
+ }
+ #msg {
+      background-color:#0b525b;
+      color:azure;
+     font-size: 2rem;
+   
+     display:inline;
+     border-radius:1rem;
+     padding:1rem;
+
+
+ }
+
+img {
+     height:150px;
+     width:150px;
+     object-fit:cover;
+     border-radius:50%;
+}
