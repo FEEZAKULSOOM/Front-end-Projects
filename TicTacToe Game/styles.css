@@ -1,0 +1,105 @@
+* {
+      margin:0;
+      padding:0;
+}
+
+body {
+     background-color: #929487;
+     text-align: center;
+}
+
+.container {
+     height:70vh;
+       display: flex;
+     flex-wrap:wrap;
+     align-items: center;
+     justify-content:center ;
+}
+.game {
+     height:60vmin;
+     width:60vmin;
+     display: flex;
+     flex-wrap:wrap;
+     align-items: center;
+     justify-content:center ;
+     gap:1.5vmin;
+}
+
+
+.box {
+      height:18vmin;
+      width:18vmin;
+      border-radius: 1rem;
+      border:none;
+      box-shadow:0 0  1rem #6B6054;
+      font-size:8vmin;
+      color:#6B6054;
+      background-color: #C3DAC3;
+}
+
+h1 {
+      color:#6B6054;
+}
+
+#reset-btn {
+      padding:1rem;
+      font-size:1.5rem;
+      background-color:#6B6054;
+      border-radius:1rem;
+      border:none;
+}
+.balloon {
+  position: fixed;
+  bottom: -100px;
+  width: 40px;
+  height: 55px;
+  border-radius: 50%;
+  animation: floatUp 4s linear forwards;
+  z-index: 1000;
+}
+
+@keyframes floatUp {
+  to {
+    transform: translateY(-120vh);
+    opacity: 0;
+  }
+}
+
+/* DRAW animation */
+.draw-shake {
+  animation: shake 0.5s ease-in-out 4;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-10px); }
+  50% { transform: translateX(10px); }
+  75% { transform: translateX(-10px); }
+  100% { transform: translateX(0); }
+}
+
+#new-btn {
+      padding:1rem;
+      font-size:1.5rem;
+      background-color:#6B6054;
+      border-radius:1rem;
+      border:none;
+}
+.msg-container {
+     height:100vmin;
+     display:flex;
+     align-items: center;
+     justify-content: center;
+     flex-direction: column;
+     gap:4rem;
+
+
+}
+#msg {
+     color:#6B6054;
+     font-size:6vmin;
+}
+
+.hide {
+      display:none;
+}
