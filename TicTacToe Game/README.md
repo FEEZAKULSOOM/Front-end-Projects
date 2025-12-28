@@ -19,7 +19,7 @@ The game includes **win detection, draw detection, animations**, and a **reset f
 ## 🧠 Game Rules
 
 - Players take turns placing **O** and **X**
-- First player to align **3 symbols** (row, column, or diagonal) wins
+- First player to align **3 symbols** (row, column, or diagonal) win
 - If all 9 boxes are filled with no winner → **Draw**
 
 ---
