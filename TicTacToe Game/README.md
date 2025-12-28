@@ -32,5 +32,5 @@ The game includes **win detection, draw detection, animations**, and a **reset f
 
 ---
 
-## 📂 Project Structure
+
 
