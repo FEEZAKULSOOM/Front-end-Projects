@@ -24,6 +24,14 @@ Example endpoint:
 https://v6.exchangerate-api.com/v6/YOUR_API_KEY/latest/USD
 
 
+## Project Structure
+currency-converter-api-app/
+├── index.html
+├── styles.css
+├── app.js
+├── code.js
+└── README.md
+
 ## How It Works
 1. Enter an amount
 2. Select source and target currencies
