@@ -1,0 +1,319 @@
+/* ===============================
+   Global Theme Variables
+   =============================== */
+:root {
+  --primary: #6366f1;     /* Main brand color */
+  --accent: #22d3ee;      /* Accent / highlight color */
+  --bg: #0b1120;          /* App background */
+  --card: rgba(30, 41, 59, 0.7); /* Glass card background */
+  --text: #f8fafc;        /* Primary text color */
+  --text-dim: #94a3b8;    /* Muted text */
+}
+
+/* ===============================
+   CSS Reset & Base Rules
+   =============================== */
+* {
+  box-sizing: border-box; /* Predictable sizing */
+  margin: 0;
+  padding: 0;
+}
+
+/* ===============================
+   Page Layout & Background
+   =============================== */
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(circle at top right, #1e1b4b, transparent),
+    radial-gradient(circle at bottom left, #1e1b4b, transparent);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* ===============================
+   App Wrapper
+   =============================== */
+.app-container {
+  width: 100%;
+  max-width: 420px;
+  perspective: 1000px; /* Enables depth for animations */
+}
+
+/* ===============================
+   Glass Card Base
+   =============================== */
+.view {
+  background: var(--card);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 28px;
+  padding: 32px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  transition: all 0.4s ease;
+}
+
+/* Hide inactive views */
+.hidden {
+  display: none !important;
+}
+
+/* ===============================
+   Header Section
+   =============================== */
+.header {
+  text-align: center;
+  margin-bottom: 26px;
+}
+
+.header h1 {
+  font-size: 30px;
+  font-weight: 800;
+  animation: titleReveal 0.8s ease both; /* Smooth title entrance */
+}
+
+.header h1 span {
+  color: var(--primary);
+}
+
+.header p {
+  color: var(--text-dim);
+  font-size: 14px;
+  margin-top: 6px;
+}
+
+/* Title reveal animation */
+@keyframes titleReveal {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+    letter-spacing: 2px;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    letter-spacing: normal;
+  }
+}
+
+/* ===============================
+   City Dropdown
+   =============================== */
+#city-select {
+  width: 100%;
+  padding: 14px;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 14px;
+  color: white;
+  font-size: 15px;
+  margin-bottom: 14px;
+  cursor: pointer;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+/* Lift + glow on interaction */
+#city-select:hover,
+#city-select:focus {
+  transform: translateY(-2px);
+  border-color: var(--primary);
+  box-shadow: 0 8px 24px rgba(99,102,241,0.35);
+}
+
+/* ===============================
+   Buttons
+   =============================== */
+#get-weather-btn,
+#refresh-btn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 14px;
+  border: none;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* Primary CTA */
+#get-weather-btn {
+  background: linear-gradient(135deg, var(--primary), #a855f7);
+  color: white;
+}
+
+/* Hover lift */
+#get-weather-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* Click feedback */
+#get-weather-btn:active {
+  transform: translateY(2px) scale(0.98);
+  box-shadow: 0 6px 12px rgba(99,102,241,0.4);
+}
+
+/* Secondary button */
+#refresh-btn {
+  background: transparent;
+  border: 1px solid #334155;
+  color: var(--text-dim);
+  margin-top: 22px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Soft ripple glow */
+#refresh-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(255,255,255,0.2), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#refresh-btn:hover::after {
+  opacity: 1;
+}
+
+/* ===============================
+   Weather Result Card
+   =============================== */
+#weather-info {
+  text-align: center;
+  padding: 26px;
+  transition:
+    transform 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.45s ease;
+}
+
+/* Card lift on hover */
+#weather-info:hover {
+  transform: translateY(-8px);
+  box-shadow:
+    0 30px 60px rgba(0,0,0,0.6),
+    0 0 0 1px rgba(255,255,255,0.06);
+}
+
+/* ===============================
+   Weather Badge
+   =============================== */
+.weather-badge {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  filter: drop-shadow(0 0 10px rgba(120,130,255,0.6));
+}
+
+/* City name */
+#location {
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+/* Weather condition */
+#weather-main {
+  color: var(--accent);
+  letter-spacing: 3px;
+  font-size: 11px;
+  font-weight: 800;
+  margin-bottom: 14px;
+}
+
+/* ===============================
+   Temperature Display
+   =============================== */
+#main-temperature {
+  font-size: 64px;
+  font-weight: 200;
+  margin-bottom: 18px;
+  transition:
+    transform 0.4s ease,
+    text-shadow 0.4s ease;
+}
+
+/* Gentle scale + glow */
+#main-temperature:hover {
+  transform: scale(1.05);
+  text-shadow:
+    0 0 20px rgba(99,102,241,0.6),
+    0 0 40px rgba(34,211,238,0.3);
+}
+
+/* ===============================
+   Stats Grid
+   =============================== */
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+/* Individual stat cards */
+#feels-like,
+#humidity,
+#wind,
+#wind-gust {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 14px 10px;
+  border-radius: 16px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition:
+    transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.35s ease,
+    background 0.35s ease;
+}
+
+/* Lift + glow interaction */
+#feels-like:hover,
+#humidity:hover,
+#wind:hover,
+#wind-gust:hover,
+#feels-like:active,
+#humidity:active,
+#wind:active,
+#wind-gust:active {
+  transform: translateY(-6px) scale(1.05);
+  background: rgba(99, 102, 241, 0.12);
+  box-shadow:
+    0 10px 30px rgba(99, 102, 241, 0.35),
+    inset 0 0 0 1px rgba(255,255,255,0.08);
+}
+
+/* ===============================
+   Labels & Units
+   =============================== */
+#feels-like::before { content: "FEELS LIKE"; }
+#humidity::before   { content: "HUMIDITY"; }
+#wind::before       { content: "WIND"; }
+#wind-gust::before  { content: "GUST"; }
+
+#feels-like::before,
+#humidity::before,
+#wind::before,
+#wind-gust::before {
+  display: block;
+  font-size: 9px;
+  color: var(--text-dim);
+  margin-bottom: 4px;
+  letter-spacing: 1px;
+}
+
+/* Units */
+#humidity::after { content: "%"; }
+
+#wind::after,
+#wind-gust::after {
+  content: " km/h";
+  font-size: 10px;
+}
