@@ -114,21 +114,6 @@ Data fetched:
 
 ---
 
-## 🎯 Design Philosophy
-
-- ✨ Clean & professional UI
-- 🎛️ Subtle, meaningful animations
-- 🧠 Senior-developer UX decisions
-- ❌ No unnecessary effects
-- ❌ No over-engineering
-
----
-
-## 📸 Screenshots (Optional)
-
-_Add screenshots here if you want later_
-
----
 
 ## 🔮 Future Improvements
 
