@@ -1,0 +1,116 @@
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: radial-gradient(circle at top, #1e293b, #020617);
+  color: #e5e7eb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* App card */
+.container {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  padding: 2.2rem;
+  border-radius: 18px;
+  width: 340px;
+  box-shadow:
+    0 30px 60px rgba(0, 0, 0, 0.7),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  animation: fadeIn 0.7s ease;
+}
+
+/* Input */
+input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  outline: none;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  background: rgba(15, 23, 42, 0.8);
+  color: #f8fafc;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+input::placeholder {
+  color: #94a3b8;
+}
+
+input:focus {
+  box-shadow: 0 0 0 2px #6366f1;
+  transform: scale(1.01);
+}
+
+/* Button */
+button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(135deg, #6366f1, #818cf8);
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  transition: transform 0.15s, box-shadow 0.15s, opacity 0.15s;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(99, 102, 241, 0.6);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 12px rgba(99, 102, 241, 0.4);
+  opacity: 0.9;
+}
+
+/* Result text */
+#result {
+  margin-top: 1.2rem;
+  text-align: center;
+  font-weight: 600;
+  padding: 10px;
+  border-radius: 10px;
+  animation: pop 0.35s ease;
+}
+
+/* Success / Error states (JS can toggle classes) */
+.success {
+  background: rgba(34, 197, 94, 0.15);
+  color: #4ade80;
+}
+
+.error {
+  background: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
