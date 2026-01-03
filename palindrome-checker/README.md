@@ -31,14 +31,12 @@ spaces, punctuation, and symbols.
 **Input**
 A man, a plan, a canal. Panama
 
-markdown
-Copy code
+
 
 **Processed**
 amanaplanacanalpanama
 
-yaml
-Copy code
+
 
 ✅ Result: Palindrome
 
