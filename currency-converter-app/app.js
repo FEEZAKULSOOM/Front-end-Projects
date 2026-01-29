@@ -80,3 +80,4 @@ btn.addEventListener("click", (e) => {
 });
 
 window.addEventListener("load", updateExchangeRate);
+
