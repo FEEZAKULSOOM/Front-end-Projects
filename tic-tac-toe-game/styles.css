@@ -59,29 +59,29 @@ h1 {
 
 /* ✅ PERFECT GRID - FIXED FOR DESKTOP */
 .game {
-    width: 500px; /* Fixed reasonable size for desktop */
-    height: 500px;
-    max-width: 90vw;
-    max-height: 90vw;
+    width: 400px; /* Smaller for desktop */
+    height: 400px;
+    max-width: 85vw;
+    max-height: 85vw;
     
     display: grid !important;
     grid-template-columns: repeat(3, 1fr) !important;
     grid-template-rows: repeat(3, 1fr) !important;
     
-    gap: 12px;
-    padding: 15px;
+    gap: 10px; /* Smaller gap */
+    padding: 12px; /* Smaller padding */
     margin: 0 auto;
 }
 
-/* ✅ PERFECT BOXES - OPTIMIZED FOR DESKTOP */
+/* ✅ SMALLER BOXES FOR DESKTOP */
 .box {
     width: 100% !important;
     height: 100% !important;
     
-    border-radius: 12px;
+    border-radius: 10px; /* Smaller radius */
     border: none;
-    box-shadow: 0 0 12px #6B6054;
-    font-size: 4rem; /* Smaller font for desktop */
+    box-shadow: 0 0 10px #6B6054; /* Lighter shadow */
+    font-size: 3.2rem; /* Much smaller font */
     color: #6B6054;
     background-color: #C3DAC3;
     cursor: pointer;
