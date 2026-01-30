@@ -1,4 +1,4 @@
-/* Tic Tac Toe Game - Enhanced CSS */
+/* Tic Tac Toe Game - ALL Device Friendly */
 
 * {
     margin: 0;
@@ -13,27 +13,49 @@ body {
     padding: 20px;
     position: relative;
     overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Title */
+h1 {
+    color: #6B6054;
+    font-size: 3rem;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 /* Main Container */
 .container {
     height: 70vh;
+    min-height: 500px;
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    transition: opacity 0.3s ease;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
 }
 
-/* When winner is shown, hide the game */
+/* When winner is shown, hide the game smoothly */
 .msg-container:not(.hide) ~ .container {
-    display: none !important;
+    opacity: 0;
+    transform: scale(0.9);
+    pointer-events: none;
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 /* Game Grid */
 .game {
     height: 60vmin;
     width: 60vmin;
+    min-height: 400px;
+    min-width: 400px;
+    max-height: 550px;
+    max-width: 550px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -46,84 +68,85 @@ body {
 .box {
     height: 18vmin;
     width: 18vmin;
+    min-height: 120px;
+    min-width: 120px;
     border-radius: 1rem;
     border: none;
-    box-shadow: 0 0 1rem #6B6054;
-    font-size: 8vmin;
+    box-shadow: 0 0 1.2rem #6B6054;
+    font-size: 5rem;
     color: #6B6054;
     background-color: #C3DAC3;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    font-weight: bold;
 }
 
-/* Box click animation */
+/* Box hover for desktop */
+.box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 2rem #6B6054;
+    background-color: #d4e7d4;
+}
+
+/* Box click animation for all devices */
 .box:active {
     transform: scale(0.95);
-    animation: boxClick 0.3s ease;
+    box-shadow: 0 0 0.8rem #6B6054;
 }
 
-@keyframes boxClick {
-    0% { transform: scale(1); }
-    50% { transform: scale(0.9); }
-    100% { transform: scale(1); }
-}
-
-h1 {
-    color: #6B6054;
-    font-size: clamp(2rem, 5vw, 3rem);
-    margin-bottom: 20px;
-}
-
-/* Button click animation */
-@keyframes buttonClick {
-    0% { transform: scale(1); }
-    50% { transform: scale(0.95); }
-    100% { transform: scale(1); }
-}
-
+/* Buttons */
 #reset-btn, #new-btn {
-    padding: 1rem;
-    font-size: 1.5rem;
+    padding: 1rem 2.5rem;
+    font-size: 1.3rem;
     background-color: #6B6054;
     border-radius: 1rem;
     border: none;
     color: white;
     cursor: pointer;
-    margin: 15px;
-    transition: all 0.2s ease;
-    min-width: 150px;
+    margin: 20px;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    min-width: 180px;
+    box-shadow: 0 5px 15px rgba(107, 96, 84, 0.3);
 }
 
-/* Button click effect */
-#reset-btn:active, #new-btn:active {
-    animation: buttonClick 0.3s ease;
+/* Button hover for desktop */
+#reset-btn:hover, #new-btn:hover {
     background-color: #8a7c6d;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(107, 96, 84, 0.4);
 }
 
-/* Balloon animation - UPDATED */
+/* Button click animation for all devices */
+#reset-btn:active, #new-btn:active {
+    transform: scale(0.95);
+    box-shadow: 0 3px 10px rgba(107, 96, 84, 0.3);
+}
+
+/* Balloon animation */
 .balloon {
     position: fixed;
     bottom: -100px;
-    width: 40px;
-    height: 55px;
+    width: 50px;
+    height: 65px;
     border-radius: 50%;
-    animation: floatUp 4s linear forwards;
+    animation: floatUp 5s linear forwards;
     z-index: 1000;
     opacity: 0.8;
 }
 
 @keyframes floatUp {
     0% {
-        transform: translateY(0) scale(1);
+        transform: translateY(0) rotate(0deg);
         opacity: 0.8;
     }
     100% {
-        transform: translateY(-120vh) scale(0.8);
+        transform: translateY(-120vh) rotate(20deg);
         opacity: 0;
     }
 }
 
-/* DRAW animation - ENHANCED */
+/* DRAW animation */
 .draw-anim {
     animation: shake 0.5s ease-in-out 3;
 }
@@ -135,15 +158,7 @@ h1 {
     75% { transform: translateX(-10px); }
 }
 
-#new-btn {
-    padding: 1rem;
-    font-size: 1.5rem;
-    background-color: #6B6054;
-    border-radius: 1rem;
-    border: none;
-}
-
-/* WINNER MESSAGE - FIXED FOR MOBILE */
+/* WINNER MESSAGE - Full screen for all devices */
 .msg-container {
     position: fixed;
     top: 0;
@@ -154,15 +169,16 @@ h1 {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 4rem;
-    background-color: #929487;
+    gap: 50px;
+    background-color: rgba(146, 148, 135, 0.98);
     z-index: 2000;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.5s ease, visibility 0.5s ease;
+    transition: all 0.5s ease;
+    backdrop-filter: blur(10px);
 }
 
-/* When not hidden (winner shown) */
+/* When winner is shown */
 .msg-container:not(.hide) {
     opacity: 1;
     visibility: visible;
@@ -171,22 +187,22 @@ h1 {
 /* Winner Message */
 #msg {
     color: #6B6054;
-    font-size: clamp(2rem, 6vw, 3.5rem);
+    font-size: 3.5rem;
     background: rgba(255, 255, 255, 0.2);
-    border-radius: 20px;
-    padding: 2rem;
-    max-width: 90%;
+    border-radius: 25px;
+    padding: 2.5rem 3rem;
+    max-width: 800px;
     text-align: center;
     line-height: 1.3;
-    animation: popIn 0.5s ease-out;
+    animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     backdrop-filter: blur(10px);
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
 }
 
 @keyframes popIn {
     0% {
-        transform: scale(0.8);
+        transform: scale(0.7);
         opacity: 0;
     }
     100% {
@@ -195,49 +211,176 @@ h1 {
     }
 }
 
+/* New Game button in winner screen */
+.msg-container:not(.hide) #new-btn {
+    font-size: 1.5rem;
+    padding: 1.2rem 3rem;
+    background: linear-gradient(145deg, #6B6054, #8a7c6d);
+    animation: buttonFloat 0.8s ease-out 0.3s both;
+}
+
+@keyframes buttonFloat {
+    0% {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
 .hide {
     display: none !important;
 }
 
-/* ====== RESPONSIVE FIXES ====== */
+/* ====== RESPONSIVE FOR ALL DEVICES ====== */
 
-/* Tablet (768px and below) */
-@media (max-width: 768px) {
+/* Laptop (992px - 1199px) */
+@media (max-width: 1199px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+    
+    .container {
+        height: 65vh;
+        min-height: 450px;
+    }
+    
+    .game {
+        height: 55vmin;
+        width: 55vmin;
+        min-height: 350px;
+        min-width: 350px;
+    }
+    
+    .box {
+        min-height: 100px;
+        min-width: 100px;
+        font-size: 4rem;
+    }
+    
+    #msg {
+        font-size: 3rem;
+        padding: 2rem 2.5rem;
+    }
+}
+
+/* Tablet (768px - 991px) */
+@media (max-width: 991px) {
+    body {
+        padding: 15px;
+    }
+    
+    h1 {
+        font-size: 2.2rem;
+        margin-bottom: 25px;
+    }
+    
     .container {
         height: 60vh;
+        min-height: 400px;
     }
     
     .game {
         height: 70vmin;
         width: 70vmin;
+        min-height: 320px;
+        min-width: 320px;
+        gap: 1.2vmin;
     }
     
     .box {
         height: 22vmin;
         width: 22vmin;
-        font-size: 10vmin;
+        min-height: 90px;
+        min-width: 90px;
+        font-size: 3.5rem;
     }
     
     #msg {
         font-size: 2.5rem;
-        padding: 1.5rem;
+        padding: 1.8rem 2.2rem;
+        max-width: 90%;
     }
     
     #reset-btn, #new-btn {
+        padding: 1rem 2rem;
+        font-size: 1.2rem;
+        min-width: 160px;
+    }
+    
+    .msg-container:not(.hide) #new-btn {
         font-size: 1.3rem;
-        padding: 0.9rem;
+        padding: 1.1rem 2.5rem;
     }
 }
 
-/* Mobile (480px and below) */
-@media (max-width: 480px) {
+/* Mobile Landscape & Small Tablets (576px - 767px) */
+@media (max-width: 767px) {
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+    
+    .container {
+        height: 55vh;
+        min-height: 350px;
+    }
+    
+    .game {
+        height: 75vmin;
+        width: 75vmin;
+        min-height: 300px;
+        min-width: 300px;
+        gap: 1vmin;
+        padding: 1.5vmin;
+    }
+    
+    .box {
+        height: 24vmin;
+        width: 24vmin;
+        min-height: 80px;
+        min-width: 80px;
+        font-size: 3rem;
+        border-radius: 0.8rem;
+    }
+    
+    .msg-container {
+        gap: 40px;
+    }
+    
+    #msg {
+        font-size: 2.2rem;
+        padding: 1.5rem 2rem;
+        margin: 0 20px;
+    }
+    
+    #reset-btn, #new-btn {
+        padding: 0.9rem 1.8rem;
+        font-size: 1.1rem;
+        min-width: 150px;
+        margin: 15px;
+    }
+    
+    .balloon {
+        width: 40px;
+        height: 55px;
+    }
+}
+
+/* Mobile Portrait (below 576px) */
+@media (max-width: 575px) {
     body {
         padding: 10px;
+        justify-content: flex-start;
+        padding-top: 30px;
     }
     
     h1 {
         font-size: 1.8rem;
-        margin-bottom: 15px;
+        margin-bottom: 20px;
+        padding: 0 10px;
     }
     
     .container {
@@ -250,7 +393,9 @@ h1 {
         width: 85vw;
         min-height: 280px;
         min-width: 280px;
-        gap: 1vmin;
+        max-height: 400px;
+        max-width: 400px;
+        gap: 0.8vmin;
         padding: 1.5vmin;
     }
     
@@ -259,37 +404,45 @@ h1 {
         width: 27vw;
         min-height: 70px;
         min-width: 70px;
-        font-size: 8vmin;
+        font-size: 2.5rem;
+        border-radius: 0.7rem;
     }
     
     .msg-container {
-        gap: 2.5rem;
+        gap: 30px;
         padding: 20px;
     }
     
     #msg {
         font-size: 1.8rem;
-        padding: 1.5rem;
-        margin: 0 10px;
+        padding: 1.2rem 1.5rem;
+        margin: 0 15px;
+        border-radius: 20px;
     }
     
     #reset-btn, #new-btn {
-        font-size: 1.2rem;
         padding: 0.8rem 1.5rem;
+        font-size: 1rem;
         min-width: 140px;
         margin: 10px;
+        border-radius: 0.8rem;
+    }
+    
+    .msg-container:not(.hide) #new-btn {
+        font-size: 1.1rem;
+        padding: 0.9rem 2rem;
     }
     
     .balloon {
-        width: 30px;
-        height: 45px;
+        width: 35px;
+        height: 50px;
     }
 }
 
-/* Very Small Mobile (360px and below) */
-@media (max-width: 360px) {
+/* Very Small Phones (below 400px) */
+@media (max-width: 399px) {
     h1 {
-        font-size: 1.5rem;
+        font-size: 1.6rem;
     }
     
     .game {
@@ -300,59 +453,74 @@ h1 {
     .box {
         height: 28vw;
         width: 28vw;
-        font-size: 7vmin;
+        min-height: 65px;
+        min-width: 65px;
+        font-size: 2.2rem;
     }
     
     #msg {
         font-size: 1.6rem;
-        padding: 1.2rem;
+        padding: 1rem 1.2rem;
     }
     
     #reset-btn, #new-btn {
-        font-size: 1.1rem;
         padding: 0.7rem 1.2rem;
+        font-size: 0.95rem;
         min-width: 130px;
     }
 }
 
-/* Landscape Mode */
+/* Landscape Mode for Mobile */
 @media (max-height: 500px) and (orientation: landscape) {
+    body {
+        padding: 5px;
+        justify-content: center;
+    }
+    
+    h1 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+    
     .container {
-        height: 80vh;
+        height: 75vh;
+        min-height: 250px;
     }
     
     .game {
-        height: 50vmin;
-        width: 50vmin;
+        height: 60vmin;
+        width: 60vmin;
+        max-height: 300px;
+        max-width: 300px;
+        gap: 0.8vmin;
     }
     
     .box {
-        height: 15vmin;
-        width: 15vmin;
+        height: 19vmin;
+        width: 19vmin;
+        font-size: 2.2rem;
     }
     
     .msg-container {
-        gap: 2rem;
+        gap: 20px;
     }
     
     #msg {
-        font-size: 2rem;
-        padding: 1rem;
+        font-size: 1.6rem;
+        padding: 1rem 1.5rem;
     }
 }
 
-/* Desktop hover effects */
-@media (hover: hover) {
+/* Touch Device Optimization */
+@media (hover: none) and (pointer: coarse) {
     .box:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 0 1.5rem #6B6054;
-        background-color: #d4e7d4;
+        transform: none;
+        box-shadow: 0 0 1.2rem #6B6054;
     }
     
     #reset-btn:hover, #new-btn:hover {
-        background-color: #8a7c6d;
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(107, 96, 84, 0.4);
+        transform: none;
+        box-shadow: 0 5px 15px rgba(107, 96, 84, 0.3);
     }
 }
 
@@ -360,4 +528,9 @@ h1 {
 .box, #reset-btn, #new-btn, #msg {
     user-select: none;
     -webkit-user-select: none;
+}
+
+/* Smooth transitions */
+.game, .box, #reset-btn, #new-btn, .msg-container, .container {
+    transition: all 0.3s ease;
 }
