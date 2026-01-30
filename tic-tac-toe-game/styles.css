@@ -230,3 +230,40 @@ main {
     body { min-height: 100dvh; }
     h1 { font-size: 2rem; }
 }
+/* ================= MOBILE WIN MESSAGE FIX ================= */
+
+/* Tablets & small screens */
+@media (max-width: 768px) {
+    #msg {
+        font-size: 2.2rem;
+        padding: 1.5rem 2rem;
+        border-radius: 18px;
+    }
+
+    .msg-container:not(.hide) #new-btn {
+        font-size: 1.1rem;
+        padding: 0.8rem 1.6rem;
+    }
+}
+
+/* Phones */
+@media (max-width: 480px) {
+    #msg {
+        font-size: 1.6rem;
+        padding: 1.2rem 1.4rem;
+        border-radius: 15px;
+    }
+
+    .msg-container:not(.hide) #new-btn {
+        font-size: 1rem;
+        padding: 0.7rem 1.4rem;
+    }
+}
+
+/* Very small phones */
+@media (max-width: 360px) {
+    #msg {
+        font-size: 1.3rem;
+        padding: 1rem 1.2rem;
+    }
+}
