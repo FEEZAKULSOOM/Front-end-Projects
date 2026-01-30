@@ -28,15 +28,15 @@ It demonstrates advanced frontend concepts like **CRUD operations, localStorage,
 - Font Awesome Icons  
 
 ---
+
+## 📂 Project Structure
+
 NexusTask/
 │
 ├── index.html
 ├── style.css
 ├── app.js
 └── README.md
-
----
-
 ## 🎯 Learning Outcomes
 
 This project helped me practice:
