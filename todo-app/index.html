@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus | Premium Task Manager</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+   
+</head>
+<body class="dark-mode">
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-tasks"></i>
+                <h1>Nexus<span>Task</span></h1>
+            </div>
+            <div class="header-actions">
+                <div class="search-container">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search tasks...">
+                </div>
+                <button id="themeToggle" class="btn-icon" aria-label="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button id="addTaskBtn" class="btn-primary">
+                    <i class="fas fa-plus"></i> Add Task
+                </button>
+            </div>
+        </header>
+
+        <!-- Progress Section -->
+        <section class="progress-section">
+            <div class="progress-header">
+                <h2>Task Progress</h2>
+                <span id="progressText">0% Complete</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Task Input -->
+            <div class="task-input-section glassmorphism">
+                <div class="input-group">
+                    <input type="text" id="taskInput" placeholder="What needs to be done?">
+                    <select id="categorySelect">
+                        <option value="work">Work</option>
+                        <option value="personal">Personal</option>
+                        <option value="shopping">Shopping</option>
+                        <option value="health">Health</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <select id="prioritySelect">
+                        <option value="low">Low Priority</option>
+                        <option value="medium" selected>Medium Priority</option>
+                        <option value="high">High Priority</option>
+                    </select>
+                    <button id="addTask" class="btn-primary">
+                        <i class="fas fa-plus"></i> Add
+                    </button>
+                </div>
+                <div class="filter-controls">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="active">Active</button>
+                    <button class="filter-btn" data-filter="completed">Completed</button>
+                    <button class="filter-btn" data-filter="high">High Priority</button>
+                </div>
+            </div>
+
+            <!-- Task Columns -->
+            <div class="task-columns">
+                <!-- To Do Column -->
+                <div class="column" id="todo-column">
+                    <div class="column-header">
+                        <h3><i class="fas fa-clipboard-list"></i> To Do</h3>
+                        <span class="task-count" id="todo-count">0</span>
+                    </div>
+                    <div class="task-list" id="todo-list" data-status="todo">
+                        <!-- Tasks will be inserted here dynamically -->
+                    </div>
+                </div>
+
+                <!-- In Progress Column -->
+                <div class="column" id="inprogress-column">
+                    <div class="column-header">
+                        <h3><i class="fas fa-spinner"></i> In Progress</h3>
+                        <span class="task-count" id="inprogress-count">0</span>
+                    </div>
+                    <div class="task-list" id="inprogress-list" data-status="inprogress">
+                        <!-- Tasks will be inserted here dynamically -->
+                    </div>
+                </div>
+
+                <!-- Done Column -->
+                <div class="column" id="done-column">
+                    <div class="column-header">
+                        <h3><i class="fas fa-check-circle"></i> Done</h3>
+                        <span class="task-count" id="done-count">0</span>
+                    </div>
+                    <div class="task-list" id="done-list" data-status="done">
+                        <!-- Tasks will be inserted here dynamically -->
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+    <div class="footer-content">
+        <div class="footer-stats">
+            <div class="stat">
+                <i class="fas fa-tasks"></i>
+                <span class="stat-value" id="totalTasks">0</span>
+                <span class="stat-label">Total</span>
+            </div>
+            <div class="stat">
+                <i class="fas fa-check-circle"></i>
+                <span class="stat-value" id="completedTasks">0</span>
+                <span class="stat-label">Done</span>
+            </div>
+          
+        </div>
+        
+        <div class="footer-info">
+            <button id="clearCompleted" class="footer-btn">
+                <i class="fas fa-trash"></i>
+                Clear Completed
+            </button>
+           
+        </div>
+    </div>
+
+
+</footer>
+    </div>
+
+    <!-- Task Modal -->
+    <div id="taskModal" class="modal">
+        <div class="modal-content glassmorphism">
+            <div class="modal-header">
+                <h2>Edit Task</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="editTaskTitle">Task Title</label>
+                    <input type="text" id="editTaskTitle">
+                </div>
+                <div class="form-group">
+                    <label for="editTaskCategory">Category</label>
+                    <select id="editTaskCategory">
+                        <option value="work">Work</option>
+                        <option value="personal">Personal</option>
+                        <option value="shopping">Shopping</option>
+                        <option value="health">Health</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="editTaskPriority">Priority</label>
+                    <select id="editTaskPriority">
+                        <option value="low">Low Priority</option>
+                        <option value="medium">Medium Priority</option>
+                        <option value="high">High Priority</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="editTaskStatus">Status</label>
+                    <select id="editTaskStatus">
+                        <option value="todo">To Do</option>
+                        <option value="inprogress">In Progress</option>
+                        <option value="done">Done</option>
+                    </select>
+                </div>
+                <div class="modal-actions">
+                    <button id="saveTaskChanges" class="btn-primary">Save Changes</button>
+                    <button id="cancelEdit" class="btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div id="notification" class="notification"></div>
+
+ <script src="app.js"></script>
+</body>
+</html>
