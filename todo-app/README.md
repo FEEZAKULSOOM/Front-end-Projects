@@ -31,7 +31,7 @@ It demonstrates advanced frontend concepts like **CRUD operations, localStorage,
 
 ## 📂 Project Structure
 
-NexusTask/
+todo-app/
 │
 ├── index.html
 ├── style.css
