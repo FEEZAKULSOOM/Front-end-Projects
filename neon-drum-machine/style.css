@@ -1,0 +1,485 @@
+/* COMPACT DRUM MACHINE WITH LARGER TEXT */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    color: #fff;
+}
+
+/* TINY CONTAINER */
+#drum-machine {
+    background: rgba(20, 20, 40, 0.95);
+    border-radius: 12px;
+    padding: 15px;
+    width: 100%;
+    max-width: 450px;
+    min-width: 250px;
+    box-shadow: 
+        0 8px 15px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(100, 100, 255, 0.1),
+        inset 0 0 8px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(8px);
+    border: 1.5px solid rgba(100, 100, 255, 0.3);
+}
+
+/* HEADER - LARGER TEXT */
+.header {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.header h1 {
+    font-size: 1.5rem; /* LARGER TEXT */
+    background: linear-gradient(90deg, #00dbde, #fc00ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 3px;
+    text-shadow: 0 0 9px rgba(0, 219, 222, 0.3);
+    letter-spacing: 0.3px;
+}
+
+.header p {
+    color: #aaa;
+    font-size: 0.8rem; /* LARGER TEXT */
+}
+
+/* DISPLAY - LARGER TEXT */
+#display {
+    background: rgba(10, 10, 25, 0.95);
+    border: 1.5px solid rgba(0, 219, 222, 0.4);
+    border-radius: 6px;
+    padding: 8px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: 1.1rem; /* LARGER TEXT */
+    font-weight: 600;
+    color: #00dbde;
+    height: 35px;
+    min-height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-shadow: 0 0 6px rgba(0, 219, 222, 0.5);
+    box-shadow: 
+        0 2px 6px rgba(0, 0, 0, 0.3),
+        inset 0 0 6px rgba(0, 0, 0, 0.5);
+    transition: all 0.2s ease;
+    letter-spacing: 0.3px;
+}
+
+/* MICRO PAD BANK - SAME BOX SIZE */
+#pad-bank {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    margin-bottom: 10px;
+}
+
+/* MICRO DRUM PADS - SAME SIZE, LARGER TEXT */
+.drum-pad {
+    aspect-ratio: 1;
+    border: none;
+    border-radius: 6px;
+    background: linear-gradient(145deg, #1a1a3a, #0f0f25);
+    color: white;
+    font-size: 1rem; /* LARGER TEXT */
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: 
+        0 3px 6px rgba(0, 0, 0, 0.4),
+        inset 0 0 6px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(100, 100, 255, 0.1);
+    padding: 0;
+}
+
+.drum-pad:hover {
+    transform: translateY(-1px);
+    box-shadow: 
+        0 4px 8px rgba(0, 0, 0, 0.5),
+        0 0 6px rgba(0, 219, 222, 0.3),
+        inset 0 0 6px rgba(0, 0, 0, 0.5);
+}
+
+.drum-pad:active, .drum-pad.active {
+    transform: scale(0.95);
+    background: linear-gradient(145deg, #25254a, #1a1a35);
+    box-shadow: 
+        0 1px 3px rgba(0, 0, 0, 0.3),
+        0 0 10px rgba(0, 219, 222, 0.6),
+        inset 0 0 6px rgba(0, 0, 0, 0.7);
+}
+
+/* TEXT IN BOXES - LARGER */
+.drum-pad .key-label {
+    font-size: 0.9rem; /* LARGER TEXT */
+    color: #00dbde;
+    text-shadow: 0 0 5px rgba(0, 219, 222, 0.7);
+}
+
+.drum-pad .sound-name {
+    position: absolute;
+    bottom: 3px;
+    font-size: 0.55rem; /* LARGER TEXT */
+    color: #aaa;
+    font-weight: normal;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 85%;
+}
+
+/* CONTROLS - LARGER TEXT */
+.controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.volume-control {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.volume-control label {
+    color: #aaa;
+    font-size: 0.75rem; /* LARGER TEXT */
+    white-space: nowrap;
+}
+
+#volume-slider {
+    width: 60px;
+    height: 4px;
+    background: rgba(10, 10, 25, 0.8);
+    border-radius: 2px;
+    outline: none;
+}
+
+#volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: linear-gradient(90deg, #00dbde, #fc00ff);
+    cursor: pointer;
+    box-shadow: 0 0 4px rgba(0, 219, 222, 0.5);
+}
+
+.instructions {
+    text-align: center;
+    color: #888;
+    font-size: 0.65rem; /* LARGER TEXT */
+    margin-top: 6px;
+}
+
+.instructions i {
+    color: #00dbde;
+    margin: 0 2px;
+}
+
+.neon-border {
+    position: relative;
+    overflow: hidden;
+}
+
+.neon-border::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    background: linear-gradient(45deg, #00dbde, #fc00ff, #00dbde, #fc00ff);
+    z-index: -1;
+    filter: blur(3px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.drum-pad:hover::before {
+    opacity: 0.7;
+}
+
+.sound-bank {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.sound-btn {
+    padding: 3px 8px;
+    background: rgba(100, 100, 255, 0.1);
+    border: 1px solid rgba(100, 100, 255, 0.3);
+    border-radius: 10px;
+    color: #aaa;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.7rem; /* LARGER TEXT */
+}
+
+.sound-btn:hover {
+    background: rgba(100, 100, 255, 0.2);
+    color: #fff;
+}
+
+.sound-btn.active {
+    background: rgba(0, 219, 222, 0.2);
+    border-color: rgba(0, 219, 222, 0.5);
+    color: #00dbde;
+}
+
+/* ========== RESPONSIVE ADJUSTMENTS ========== */
+
+/* Desktop */
+@media (min-width: 1024px) {
+    #drum-machine {
+        max-width: 400px;
+        padding: 12px;
+    }
+    
+    #pad-bank {
+        gap: 5px;
+    }
+    
+    .drum-pad {
+        font-size: 1.1rem; /* LARGER TEXT */
+    }
+    
+    .header h1 {
+        font-size: 1.3rem; /* LARGER TEXT */
+    }
+    
+    .header p {
+        font-size: 0.75rem; /* LARGER TEXT */
+    }
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+    #drum-machine {
+        padding: 12px;
+        max-width: 350px;
+    }
+    
+    .header h1 {
+        font-size: 1.2rem; /* LARGER TEXT */
+    }
+    
+    .header p {
+        font-size: 0.7rem; /* LARGER TEXT */
+    }
+    
+    #display {
+        font-size: 1rem; /* LARGER TEXT */
+        height: 30px;
+        padding: 6px;
+    }
+    
+    #pad-bank {
+        gap: 5px;
+    }
+    
+    .drum-pad {
+        font-size: 0.95rem; /* LARGER TEXT */
+        border-radius: 5px;
+    }
+    
+    .drum-pad .key-label {
+        font-size: 0.85rem; /* LARGER TEXT */
+    }
+    
+    .controls {
+        flex-direction: column;
+        gap: 8px;
+        align-items: stretch;
+    }
+    
+    .volume-control {
+        justify-content: center;
+    }
+    
+    .sound-bank {
+        justify-content: center;
+        gap: 4px;
+    }
+    
+    .sound-btn {
+        padding: 2px 6px;
+        font-size: 0.65rem; /* LARGER TEXT */
+    }
+}
+
+/* Mobile Phones */
+@media (max-width: 480px) {
+    body {
+        padding: 6px;
+    }
+    
+    #drum-machine {
+        padding: 10px;
+        border-radius: 10px;
+        max-width: 300px;
+    }
+    
+    .header h1 {
+        font-size: 1rem; /* LARGER TEXT */
+    }
+    
+    .header p {
+        font-size: 0.65rem; /* LARGER TEXT */
+    }
+    
+    #display {
+        font-size: 0.9rem; /* LARGER TEXT */
+        height: 28px;
+        padding: 5px;
+        border-radius: 5px;
+    }
+    
+    #pad-bank {
+        gap: 4px;
+    }
+    
+    .drum-pad {
+        font-size: 0.85rem; /* LARGER TEXT */
+        border-radius: 4px;
+    }
+    
+    .drum-pad .key-label {
+        font-size: 0.8rem; /* LARGER TEXT */
+    }
+    
+    .drum-pad .sound-name {
+        font-size: 0.5rem; /* LARGER TEXT */
+        bottom: 2px;
+    }
+    
+    #volume-slider {
+        width: 50px;
+    }
+    
+    .instructions {
+        font-size: 0.6rem; /* LARGER TEXT */
+    }
+}
+
+/* Small Phones */
+@media (max-width: 360px) {
+    #drum-machine {
+        padding: 8px;
+        max-width: 280px;
+    }
+    
+    .header h1 {
+        font-size: 0.9rem; /* LARGER TEXT */
+    }
+    
+    #pad-bank {
+        gap: 3px;
+    }
+    
+    .drum-pad {
+        border-radius: 3px;
+        font-size: 0.8rem; /* LARGER TEXT */
+    }
+    
+    .drum-pad .key-label {
+        font-size: 0.75rem; /* LARGER TEXT */
+    }
+    
+    .sound-btn {
+        padding: 2px 4px;
+        font-size: 0.6rem; /* LARGER TEXT */
+    }
+}
+
+/* Landscape Mode */
+@media (orientation: landscape) and (max-height: 400px) {
+    body {
+        padding: 4px;
+    }
+    
+    #drum-machine {
+        padding: 8px;
+        max-width: 85vw;
+    }
+    
+    .header {
+        margin-bottom: 6px;
+    }
+    
+    .header h1 {
+        font-size: 0.9rem; /* LARGER TEXT */
+    }
+    
+    #display {
+        margin-bottom: 6px;
+        height: 25px;
+        font-size: 0.8rem; /* LARGER TEXT */
+        padding: 4px;
+    }
+    
+    #pad-bank {
+        margin-bottom: 6px;
+        gap: 3px;
+    }
+    
+    .drum-pad {
+        font-size: 0.75rem; /* LARGER TEXT */
+    }
+    
+    .controls {
+        margin-top: 6px;
+        padding-top: 6px;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 280px) {
+    #drum-machine {
+        padding: 6px;
+        max-width: 260px;
+    }
+    
+    .drum-pad {
+        font-size: 0.7rem; /* LARGER TEXT */
+    }
+    
+    .drum-pad .key-label {
+        font-size: 0.65rem; /* LARGER TEXT */
+    }
+}
+
+/* Ensure NO scrolling EVER */
+html, body {
+    overflow-x: hidden;
+    overflow-y: hidden;
+    max-width: 100%;
+    max-height: 100vh;
+}
+
+/* Force fit on any screen */
+@media (min-height: 700px) and (min-width: 768px) {
+    #drum-machine {
+        transform: scale(0.85);
+    }
+}
