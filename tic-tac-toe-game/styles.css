@@ -1,4 +1,4 @@
-/* Tic Tac Toe Game - ALL Device Friendly */
+/* Tic Tac Toe Game - Fully Responsive */
 
 * {
     margin: 0;
@@ -6,10 +6,16 @@
     box-sizing: border-box;
 }
 
+html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
 body {
     background-color: #929487;
     text-align: center;
     min-height: 100vh;
+    min-height: -webkit-fill-available;
     padding: 20px;
     position: relative;
     overflow-x: hidden;
@@ -17,6 +23,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* Title */
@@ -25,12 +32,13 @@ h1 {
     font-size: 3rem;
     margin-bottom: 30px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    letter-spacing: 1px;
 }
 
 /* Main Container */
 .container {
     height: 70vh;
-    min-height: 500px;
+    min-height: 450px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -40,7 +48,7 @@ h1 {
     position: relative;
 }
 
-/* When winner is shown, hide the game smoothly */
+/* When winner is shown */
 .msg-container:not(.hide) ~ .container {
     opacity: 0;
     transform: scale(0.9);
@@ -52,8 +60,9 @@ h1 {
 .game {
     height: 60vmin;
     width: 60vmin;
-    min-height: 400px;
-    min-width: 400px;
+    aspect-ratio: 1/1;
+    min-height: 380px;
+    min-width: 380px;
     max-height: 550px;
     max-width: 550px;
     display: flex;
@@ -62,14 +71,16 @@ h1 {
     justify-content: center;
     gap: 1.5vmin;
     padding: 2vmin;
+    margin: 0 auto;
 }
 
 /* Boxes */
 .box {
     height: 18vmin;
     width: 18vmin;
-    min-height: 120px;
-    min-width: 120px;
+    aspect-ratio: 1/1;
+    min-height: 110px;
+    min-width: 110px;
     border-radius: 1rem;
     border: none;
     box-shadow: 0 0 1.2rem #6B6054;
@@ -79,6 +90,8 @@ h1 {
     cursor: pointer;
     transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     font-weight: bold;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 /* Box hover for desktop */
@@ -92,6 +105,14 @@ h1 {
 .box:active {
     transform: scale(0.95);
     box-shadow: 0 0 0.8rem #6B6054;
+}
+
+/* Button Container */
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
 
 /* Buttons */
@@ -108,6 +129,8 @@ h1 {
     font-weight: 600;
     min-width: 180px;
     box-shadow: 0 5px 15px rgba(107, 96, 84, 0.3);
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 /* Button hover for desktop */
@@ -133,6 +156,7 @@ h1 {
     animation: floatUp 5s linear forwards;
     z-index: 1000;
     opacity: 0.8;
+    pointer-events: none;
 }
 
 @keyframes floatUp {
@@ -158,7 +182,7 @@ h1 {
     75% { transform: translateX(-10px); }
 }
 
-/* WINNER MESSAGE - Full screen for all devices */
+/* WINNER MESSAGE */
 .msg-container {
     position: fixed;
     top: 0;
@@ -198,6 +222,8 @@ h1 {
     backdrop-filter: blur(10px);
     border: 3px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 @keyframes popIn {
@@ -234,46 +260,112 @@ h1 {
     display: none !important;
 }
 
-/* ====== RESPONSIVE FOR ALL DEVICES ====== */
+/* ========== RESPONSIVE DESIGN ========== */
 
-/* Laptop (992px - 1199px) */
-@media (max-width: 1199px) {
-    h1 {
-        font-size: 2.5rem;
+/* Large Desktops (1920px and above) */
+@media (min-width: 1920px) {
+    body {
+        padding: 40px;
     }
     
     .container {
-        height: 65vh;
-        min-height: 450px;
+        max-width: 900px;
+    }
+    
+    h1 {
+        font-size: 3.5rem;
+        margin-bottom: 40px;
+    }
+    
+    #msg {
+        font-size: 4rem;
+        padding: 3rem 4rem;
+        max-width: 1000px;
+    }
+    
+    #reset-btn, #new-btn {
+        padding: 1.2rem 3rem;
+        font-size: 1.5rem;
+        min-width: 200px;
+    }
+}
+
+/* Laptops & Desktops (1024px - 1919px) */
+@media (min-width: 1024px) and (max-width: 1919px) {
+    body {
+        padding: 30px 20px;
+    }
+    
+    .container {
+        height: 68vh;
+        min-height: 480px;
+        max-width: 700px;
     }
     
     .game {
-        height: 55vmin;
-        width: 55vmin;
-        min-height: 350px;
-        min-width: 350px;
+        height: 65vmin;
+        width: 65vmin;
+        min-height: 420px;
+        min-width: 420px;
+        max-height: 500px;
+        max-width: 500px;
+        gap: 1.8vmin;
     }
     
     .box {
-        min-height: 100px;
-        min-width: 100px;
+        height: 20vmin;
+        width: 20vmin;
+        min-height: 110px;
+        min-width: 110px;
+        font-size: 4.5rem;
+    }
+    
+    #msg {
+        font-size: 3.2rem;
+        padding: 2.2rem 2.8rem;
+        max-width: 750px;
+    }
+    
+    h1 {
+        font-size: 2.8rem;
+        margin-bottom: 25px;
+    }
+}
+
+/* Common Laptop Resolution (1366x768) */
+@media (width: 1366px) and (height: 768px) {
+    .container {
+        height: 65vh;
+        min-height: 430px;
+    }
+    
+    .game {
+        height: 62vmin;
+        width: 62vmin;
+        min-height: 380px;
+        min-width: 380px;
+    }
+    
+    .box {
+        min-height: 105px;
+        min-width: 105px;
         font-size: 4rem;
     }
     
     #msg {
-        font-size: 3rem;
+        font-size: 2.8rem;
         padding: 2rem 2.5rem;
     }
 }
 
-/* Tablet (768px - 991px) */
-@media (max-width: 991px) {
+/* Tablets (768px - 1023px) */
+@media (max-width: 1023px) and (min-width: 768px) {
     body {
         padding: 15px;
     }
     
     h1 {
-        font-size: 2.2rem;
+        font-size: 2.5rem;
         margin-bottom: 25px;
     }
     
@@ -316,10 +408,10 @@ h1 {
     }
 }
 
-/* Mobile Landscape & Small Tablets (576px - 767px) */
-@media (max-width: 767px) {
+/* Large Mobile & Small Tablets (576px - 767px) */
+@media (max-width: 767px) and (min-width: 576px) {
     h1 {
-        font-size: 2rem;
+        font-size: 2.2rem;
         margin-bottom: 20px;
     }
     
@@ -369,7 +461,7 @@ h1 {
     }
 }
 
-/* Mobile Portrait (below 576px) */
+/* Mobile Phones (below 576px) */
 @media (max-width: 575px) {
     body {
         padding: 10px;
@@ -470,11 +562,12 @@ h1 {
     }
 }
 
-/* Landscape Mode for Mobile */
+/* Mobile Landscape Mode */
 @media (max-height: 500px) and (orientation: landscape) {
     body {
         padding: 5px;
-        justify-content: center;
+        justify-content: flex-start;
+        padding-top: 10px;
     }
     
     h1 {
@@ -485,19 +578,24 @@ h1 {
     .container {
         height: 75vh;
         min-height: 250px;
+        max-height: 350px;
     }
     
     .game {
-        height: 60vmin;
-        width: 60vmin;
+        height: 55vmin;
+        width: 55vmin;
+        min-height: 250px;
+        min-width: 250px;
         max-height: 300px;
         max-width: 300px;
         gap: 0.8vmin;
     }
     
     .box {
-        height: 19vmin;
-        width: 19vmin;
+        height: 17vmin;
+        width: 17vmin;
+        min-height: 70px;
+        min-width: 70px;
         font-size: 2.2rem;
     }
     
@@ -509,6 +607,13 @@ h1 {
         font-size: 1.6rem;
         padding: 1rem 1.5rem;
     }
+    
+    #reset-btn, #new-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+        min-width: 120px;
+        margin: 10px;
+    }
 }
 
 /* Touch Device Optimization */
@@ -516,21 +621,29 @@ h1 {
     .box:hover {
         transform: none;
         box-shadow: 0 0 1.2rem #6B6054;
+        background-color: #C3DAC3;
     }
     
     #reset-btn:hover, #new-btn:hover {
         transform: none;
         box-shadow: 0 5px 15px rgba(107, 96, 84, 0.3);
+        background-color: #6B6054;
     }
-}
-
-/* Prevent text selection */
-.box, #reset-btn, #new-btn, #msg {
-    user-select: none;
-    -webkit-user-select: none;
 }
 
 /* Smooth transitions */
 .game, .box, #reset-btn, #new-btn, .msg-container, .container {
     transition: all 0.3s ease;
+}
+
+/* Prevent layout shift on load */
+.box:empty {
+    visibility: visible;
+}
+
+/* Button container for better spacing on larger screens */
+@media (min-width: 768px) {
+    main {
+        margin-top: 20px;
+    }
 }
