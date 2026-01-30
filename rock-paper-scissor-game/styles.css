@@ -1,76 +1,11 @@
-/* CSS for Rock Paper Scissors Game */
-
-/* Reset */
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* Add this for better mobile handling */
-}
-
-body {
     text-align: center;
-    min-height: 100vh;
-    width: 100%;
-    overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
-/* Background Animations */
 body {
-    background: linear-gradient(120deg, #a3b18a, #ccd5ae, #a3b18a);
-    background-size: 300% 300%;
-    animation: sageShine 10s ease-in-out infinite;
-}
-
-@keyframes sageShine {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background: linear-gradient(60deg, transparent, rgba(163, 177, 138, 0.25), transparent);
-    animation: shimmer 8s linear infinite;
-    pointer-events: none;
-}
-
-@keyframes shimmer {
-    from { transform: translateX(-100%); }
-    to { transform: translateX(100%); }
-}
-
-/* Header */
-h1 {
-    background-color: #144552;
-    color: azure;
-    height: 5rem;
-    line-height: 5rem;
-    font-size: 2rem; /* Added for mobile */
-    padding: 0 1rem; /* Added for mobile */
-}
-
-/* Choices Section */
-.choices {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 2rem; /* Reduced for mobile */
-    margin-top: 3rem; /* Reduced for mobile */
-    flex-wrap: wrap; /* Allow wrapping on small screens */
-    padding: 0 1rem; /* Added padding for mobile */
-}
-
-.choice {
-    height: 165px;
-    width: 165px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-    animation: neonPulse 2.2s ease-in-out infinite;
+    background-color: #fefae0;
 }
 
 @keyframes neonPulse {
@@ -85,165 +20,202 @@ h1 {
     }
 }
 
-.choice:hover {
-    background-color: #0b525b;
-    cursor: pointer;
-    transform: scale(1.05); /* Add slight scale on hover */
+.choice {
+    animation: neonPulse 2.2s ease-in-out infinite;
 }
 
-/* Images */
-img {
-    height: 150px;
-    width: 150px;
-    object-fit: cover;
+body {
+    background: linear-gradient(120deg, #a3b18a, #ccd5ae, #a3b18a);
+    background-size: 300% 300%;
+    animation: sageShine 10s ease-in-out infinite;
+}
+
+@keyframes sageShine {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(60deg, transparent, rgba(163, 177, 138, 0.25), transparent);
+    animation: shimmer 8s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes shimmer {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(100%);
+    }
+}
+
+h1 {
+    background-color: #144552;
+    color: azure;
+    height: 5rem;
+    line-height: 5rem;
+}
+
+.choices {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 5rem;
+    flex-wrap: wrap; /* ADDED: Allows items to wrap on small screens */
+    padding: 0 1rem; /* ADDED: Prevents touching screen edges */
+}
+
+.choice {
+    height: 165px;
+    width: 165px;
     border-radius: 50%;
-    pointer-events: none; /* Prevent image from blocking clicks */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* Score Board */
 .score-board {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.5rem; /* Reduced for mobile */
-    margin-top: 2rem; /* Reduced for mobile */
-    gap: 3rem; /* Reduced for mobile */
-    flex-wrap: wrap; /* Allow wrapping on small screens */
-}
-
-.score {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
+    font-size: 2rem;
+    margin-top: 3rem;
+    gap: 5rem;
+    flex-wrap: wrap; /* ADDED: Wraps on small screens */
 }
 
 #user-score, #computer-score {
-    font-size: 3rem; /* Reduced for mobile */
-    font-weight: bold;
+    font-size: 4rem;
 }
 
-/* Message Container */
+.choice:hover {
+    background-color: #0b525b;
+    cursor: pointer;
+}
+
 .msg-container {
-    margin-top: 3rem; /* Reduced for mobile */
-    padding: 0 1rem; /* Added padding for mobile */
+    margin-top: 5rem;
+    padding: 0 1rem; /* ADDED: Prevents text touching edges */
 }
 
 #msg {
     background-color: #0b525b;
     color: azure;
-    font-size: 1.5rem; /* Reduced for mobile */
-    display: inline-block; /* Changed from inline for better mobile handling */
+    font-size: 2rem;
+    display: inline;
     border-radius: 1rem;
-    padding: 1rem 1.5rem; /* Adjusted padding */
-    max-width: 90%; /* Limit width on mobile */
-    margin: 0 auto; /* Center on mobile */
-    word-wrap: break-word; /* Break long words */
+    padding: 1rem;
+    word-break: break-word; /* ADDED: Prevents long words from breaking layout */
+    max-width: 90%; /* ADDED: Limits width on mobile */
+    display: inline-block; /* CHANGED: Better for mobile */
 }
 
-/* ========== MOBILE RESPONSIVE STYLES ========== */
+img {
+    height: 150px;
+    width: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+}
 
-/* For tablets and smaller (max-width: 768px) */
+/* ====== MOBILE FIXES ONLY ====== */
+/* Tablet (768px and below) */
 @media (max-width: 768px) {
-    h1 {
-        height: 4rem;
-        line-height: 4rem;
-        font-size: 1.8rem;
-    }
-    
     .choices {
-        gap: 1.5rem;
-        margin-top: 2rem;
+        gap: 2rem; /* Reduce gap */
+        margin-top: 3rem;
     }
     
     .choice {
-        height: 140px;
+        height: 140px; /* Smaller circles */
         width: 140px;
     }
     
     img {
-        height: 125px;
-        width: 125px;
+        height: 130px; /* Smaller images */
+        width: 130px;
     }
     
     .score-board {
-        font-size: 1.3rem;
-        gap: 2.5rem;
+        font-size: 1.8rem;
+        gap: 3rem;
+        margin-top: 2rem;
+    }
+    
+    #user-score, #computer-score {
+        font-size: 3rem;
+    }
+    
+    #msg {
+        font-size: 1.6rem;
+        padding: 0.8rem;
+    }
+}
+
+/* Mobile (480px and below) */
+@media (max-width: 480px) {
+    h1 {
+        height: 4rem; /* Smaller header */
+        line-height: 4rem;
+        font-size: 1.5rem; /* Smaller font */
+        padding: 0 0.5rem;
+    }
+    
+    .choices {
+        gap: 1.5rem; /* Even smaller gap */
+        margin-top: 2rem;
+    }
+    
+    .choice {
+        height: 120px; /* Much smaller circles */
+        width: 120px;
+    }
+    
+    img {
+        height: 110px; /* Much smaller images */
+        width: 110px;
+    }
+    
+    .score-board {
+        font-size: 1.5rem;
+        gap: 2rem;
+        margin-top: 1.5rem;
     }
     
     #user-score, #computer-score {
         font-size: 2.5rem;
     }
     
+    .msg-container {
+        margin-top: 2.5rem;
+    }
+    
     #msg {
         font-size: 1.3rem;
-        padding: 0.8rem 1.2rem;
+        padding: 0.7rem;
     }
 }
 
-/* For mobile phones (max-width: 480px) */
-@media (max-width: 480px) {
-    h1 {
-        height: 3.5rem;
-        line-height: 3.5rem;
-        font-size: 1.5rem;
-        padding: 0 0.5rem;
-    }
-    
+/* Very small phones (360px and below) */
+@media (max-width: 360px) {
     .choices {
         gap: 1rem;
-        margin-top: 1.5rem;
     }
     
     .choice {
-        height: 120px;
-        width: 120px;
-        min-width: 120px; /* Prevent shrinking too much */
-    }
-    
-    img {
-        height: 110px;
-        width: 110px;
-    }
-    
-    .score-board {
-        font-size: 1.1rem;
-        gap: 2rem;
-        margin-top: 1.5rem;
-    }
-    
-    #user-score, #computer-score {
-        font-size: 2rem;
-    }
-    
-    .msg-container {
-        margin-top: 2rem;
-    }
-    
-    #msg {
-        font-size: 1.1rem;
-        padding: 0.7rem 1rem;
-        border-radius: 0.8rem;
-    }
-}
-
-/* For very small phones (max-width: 360px) */
-@media (max-width: 360px) {
-    h1 {
-        height: 3rem;
-        line-height: 3rem;
-        font-size: 1.2rem;
-    }
-    
-    .choices {
-        gap: 0.8rem;
-        margin-top: 1rem;
-    }
-    
-    .choice {
-        height: 100px;
+        height: 100px; /* Smallest for tiny screens */
         width: 100px;
-        min-width: 100px;
     }
     
     img {
@@ -252,25 +224,24 @@ img {
     }
     
     .score-board {
-        font-size: 1rem;
         gap: 1.5rem;
+        font-size: 1.3rem;
     }
     
     #user-score, #computer-score {
-        font-size: 1.8rem;
+        font-size: 2rem;
     }
     
     #msg {
-        font-size: 1rem;
-        padding: 0.6rem 0.8rem;
+        font-size: 1.1rem;
+        padding: 0.6rem;
     }
 }
 
-/* Touch-friendly improvements for all mobile devices */
+/* Touch device improvements */
 @media (hover: none) and (pointer: coarse) {
-    /* For touch devices */
     .choice {
-        min-height: 44px; /* Minimum touch target size */
+        min-height: 44px; /* Minimum touch target */
         min-width: 44px;
     }
     
@@ -279,52 +250,18 @@ img {
         transform: scale(0.95);
     }
     
-    /* Remove hover effects on touch devices */
+    /* Remove hover on touch devices */
     .choice:hover {
         background-color: transparent;
-        transform: none;
     }
 }
 
-/* Landscape mode adjustments */
-@media (max-height: 500px) and (orientation: landscape) {
-    h1 {
-        height: 3rem;
-        line-height: 3rem;
-        font-size: 1.5rem;
-    }
-    
-    .choices {
-        margin-top: 1rem;
-        gap: 1rem;
-    }
-    
-    .choice {
-        height: 100px;
-        width: 100px;
-    }
-    
-    img {
-        height: 90px;
-        width: 90px;
-    }
-    
-    .score-board {
-        margin-top: 1rem;
-    }
-    
-    .msg-container {
-        margin-top: 1rem;
-    }
-}
-
-/* Prevent text size adjustment on iOS */
+/* Prevent iOS zoom on input */
 html {
     -webkit-text-size-adjust: 100%;
 }
 
-/* Improve tap highlights on mobile */
+/* Better tap feedback */
 .choice {
     -webkit-tap-highlight-color: rgba(11, 82, 91, 0.3);
-    tap-highlight-color: rgba(11, 82, 91, 0.3);
 }
