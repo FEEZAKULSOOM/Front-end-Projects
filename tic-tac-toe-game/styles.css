@@ -1,4 +1,4 @@
-/* Tic Tac Toe Game - Enhanced with Winner Animation */
+/* Tic Tac Toe Game - Fixed CSS */
 
 * {
     margin: 0;
@@ -44,15 +44,6 @@ h1 {
     width: 100%;
     max-width: 600px;
     margin: 0 auto;
-    transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-/* When winner is shown, hide the game */
-body.winner-show .container {
-    opacity: 0;
-    transform: scale(0.8);
-    pointer-events: none;
-    display: none !important;
 }
 
 /* Game Grid */
@@ -156,7 +147,7 @@ body.winner-show .container {
     background-color: #8a7c6d;
 }
 
-/* WINNER ANIMATION - NEW (No balloons) */
+/* WINNER ANIMATION */
 @keyframes winnerReveal {
     0% {
         opacity: 0;
@@ -165,17 +156,6 @@ body.winner-show .container {
     100% {
         opacity: 1;
         transform: scale(1) rotate(0deg);
-    }
-}
-
-@keyframes confettiFall {
-    0% {
-        transform: translateY(-100vh) rotate(0deg);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(100vh) rotate(360deg);
-        opacity: 0;
     }
 }
 
@@ -188,18 +168,7 @@ body.winner-show .container {
     }
 }
 
-/* Confetti pieces */
-.confetti {
-    position: fixed;
-    width: 10px;
-    height: 10px;
-    background: linear-gradient(45deg, #ff6b6b, #ffd166, #06d6a0, #118ab2, #ef476f);
-    opacity: 0;
-    z-index: 1000;
-    border-radius: 2px;
-}
-
-/* WINNER MESSAGE CONTAINER - FULL SCREEN */
+/* WINNER MESSAGE CONTAINER - FIXED */
 .msg-container {
     position: fixed;
     top: 0;
@@ -214,16 +183,21 @@ body.winner-show .container {
     background: rgba(146, 148, 135, 0.98);
     backdrop-filter: blur(20px);
     z-index: 2000;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.5s ease;
     padding: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 
-/* When winner is shown */
-body.winner-show .msg-container {
+/* When msg-container is NOT hidden (winner shown) */
+.msg-container:not(.hide) {
     opacity: 1;
-    pointer-events: all;
+    visibility: visible;
+}
+
+/* THIS IS THE KEY FIX: Hide game when winner is shown */
+.msg-container:not(.hide) ~ .container {
+    display: none !important;
 }
 
 /* Winner Message */
@@ -244,7 +218,7 @@ body.winner-show .msg-container {
 }
 
 /* New Game Button in Winner Screen */
-.msg-container #new-btn {
+.msg-container:not(.hide) #new-btn {
     animation: winnerReveal 1s ease-out 0.3s both;
     font-size: 1.8rem;
     padding: 1.2rem 2.5rem;
@@ -332,7 +306,7 @@ body.winner-show .msg-container {
         padding: 15px 20px;
     }
     
-    .msg-container #new-btn {
+    .msg-container:not(.hide) #new-btn {
         font-size: 1.4rem;
         padding: 1rem 2rem;
     }
@@ -371,6 +345,10 @@ body.winner-show .msg-container {
     }
     
     .box:active {
+        animation: buttonClick 0.3s ease;
+    }
+    
+    #reset-btn:active, #new-btn:active {
         animation: buttonClick 0.3s ease;
     }
 }
