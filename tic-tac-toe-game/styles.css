@@ -1,4 +1,4 @@
-/* Tic Tac Toe Game - Fully Responsive */
+/* Tic Tac Toe Game - Fixed 3x3 Grid */
 
 * {
     margin: 0;
@@ -56,7 +56,7 @@ h1 {
     transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-/* Game Grid */
+/* Game Grid - FIXED: 3x3 grid with 3 boxes per row */
 .game {
     height: 60vmin;
     width: 60vmin;
@@ -65,22 +65,19 @@ h1 {
     min-width: 380px;
     max-height: 550px;
     max-width: 550px;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
     gap: 1.5vmin;
     padding: 2vmin;
     margin: 0 auto;
 }
 
-/* Boxes */
+/* Boxes - FIXED: Each box takes equal space in the 3x3 grid */
 .box {
-    height: 18vmin;
-    width: 18vmin;
-    aspect-ratio: 1/1;
+    width: 100%;
+    height: 100%;
     min-height: 110px;
-    min-width: 110px;
     border-radius: 1rem;
     border: none;
     box-shadow: 0 0 1.2rem #6B6054;
@@ -92,6 +89,9 @@ h1 {
     font-weight: bold;
     user-select: none;
     -webkit-user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Box hover for desktop */
@@ -272,9 +272,20 @@ main {
         max-width: 900px;
     }
     
+    .game {
+        min-height: 450px;
+        min-width: 450px;
+        max-height: 600px;
+        max-width: 600px;
+    }
+    
     h1 {
         font-size: 3.5rem;
         margin-bottom: 40px;
+    }
+    
+    .box {
+        font-size: 5.5rem;
     }
     
     #msg {
@@ -313,11 +324,8 @@ main {
     }
     
     .box {
-        height: 20vmin;
-        width: 20vmin;
-        min-height: 110px;
-        min-width: 110px;
         font-size: 4.5rem;
+        min-height: 120px;
     }
     
     #msg {
@@ -347,9 +355,8 @@ main {
     }
     
     .box {
-        min-height: 105px;
-        min-width: 105px;
         font-size: 4rem;
+        min-height: 110px;
     }
     
     #msg {
@@ -358,7 +365,7 @@ main {
     }
 }
 
-/* Tablets (768px - 1023px) */
+/* Tablets (768px - 1023px) - Ensure 3x3 grid */
 @media (max-width: 1023px) and (min-width: 768px) {
     body {
         padding: 15px;
@@ -377,17 +384,16 @@ main {
     .game {
         height: 70vmin;
         width: 70vmin;
-        min-height: 320px;
-        min-width: 320px;
-        gap: 1.2vmin;
+        min-height: 350px;
+        min-width: 350px;
+        max-height: 450px;
+        max-width: 450px;
+        gap: 1.5vmin;
     }
     
     .box {
-        height: 22vmin;
-        width: 22vmin;
-        min-height: 90px;
-        min-width: 90px;
         font-size: 3.5rem;
+        min-height: 100px;
     }
     
     #msg {
@@ -408,7 +414,7 @@ main {
     }
 }
 
-/* Large Mobile & Small Tablets (576px - 767px) */
+/* Mobile Landscape & Small Tablets (576px - 767px) */
 @media (max-width: 767px) and (min-width: 576px) {
     h1 {
         font-size: 2.2rem;
@@ -423,18 +429,15 @@ main {
     .game {
         height: 75vmin;
         width: 75vmin;
-        min-height: 300px;
-        min-width: 300px;
-        gap: 1vmin;
+        min-height: 320px;
+        min-width: 320px;
+        gap: 1.5vmin;
         padding: 1.5vmin;
     }
     
     .box {
-        height: 24vmin;
-        width: 24vmin;
-        min-height: 80px;
-        min-width: 80px;
         font-size: 3rem;
+        min-height: 90px;
         border-radius: 0.8rem;
     }
     
@@ -487,16 +490,13 @@ main {
         min-width: 280px;
         max-height: 400px;
         max-width: 400px;
-        gap: 0.8vmin;
+        gap: 1vmin;
         padding: 1.5vmin;
     }
     
     .box {
-        height: 27vw;
-        width: 27vw;
-        min-height: 70px;
-        min-width: 70px;
         font-size: 2.5rem;
+        min-height: 80px;
         border-radius: 0.7rem;
     }
     
@@ -540,14 +540,13 @@ main {
     .game {
         height: 90vw;
         width: 90vw;
+        min-height: 250px;
+        min-width: 250px;
     }
     
     .box {
-        height: 28vw;
-        width: 28vw;
-        min-height: 65px;
-        min-width: 65px;
         font-size: 2.2rem;
+        min-height: 70px;
     }
     
     #msg {
@@ -582,21 +581,18 @@ main {
     }
     
     .game {
-        height: 55vmin;
-        width: 55vmin;
-        min-height: 250px;
-        min-width: 250px;
-        max-height: 300px;
-        max-width: 300px;
-        gap: 0.8vmin;
+        height: 60vmin;
+        width: 60vmin;
+        min-height: 220px;
+        min-width: 220px;
+        max-height: 280px;
+        max-width: 280px;
+        gap: 1vmin;
     }
     
     .box {
-        height: 17vmin;
-        width: 17vmin;
-        min-height: 70px;
-        min-width: 70px;
         font-size: 2.2rem;
+        min-height: 60px;
     }
     
     .msg-container {
@@ -636,14 +632,14 @@ main {
     transition: all 0.3s ease;
 }
 
-/* Prevent layout shift on load */
-.box:empty {
-    visibility: visible;
+/* Ensure grid stays 3x3 always */
+.game {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    grid-template-rows: repeat(3, 1fr) !important;
 }
 
-/* Button container for better spacing on larger screens */
-@media (min-width: 768px) {
-    main {
-        margin-top: 20px;
-    }
+.box {
+    width: 100% !important;
+    height: 100% !important;
 }
