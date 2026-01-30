@@ -62,6 +62,22 @@
             margin: 0 auto;
             padding: 20px;
         }
+/* TEMPORARY FIX - Add this at the end of your CSS file */
+@media (max-width: 600px) {
+    .task-columns {
+        display: block !important;
+    }
+    
+    .column {
+        width: 100% !important;
+        margin-bottom: 20px;
+    }
+    
+    .task-list {
+        height: auto !important;
+        min-height: 150px !important;
+    }
+}
 
         /* Glassmorphism Effect */
         .glassmorphism {
@@ -784,4 +800,5 @@
                 text-align: center;
             }
         }
+
     
