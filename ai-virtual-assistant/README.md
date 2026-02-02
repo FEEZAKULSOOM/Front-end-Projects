@@ -1,4 +1,4 @@
-# 🤖 Virtual AI Voice Assistant (Shipra)
+# 🤖 Virtual AI Voice Assistant (Siri)
 
 A browser-based **Virtual AI Voice Assistant** built using **HTML, CSS, and JavaScript**.  
 It can listen to voice commands, speak responses, open websites, tell time/date, and intelligently search the internet — similar to a real virtual assistant.
