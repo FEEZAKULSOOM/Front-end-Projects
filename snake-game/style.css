@@ -1,0 +1,322 @@
+*  {
+    margin: 0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+body {
+    width:100vw;
+    height:100vh;
+    background-color: rgb(23 , 27,31);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap:20px;
+    /* Game-like glow animation */
+    animation: gameGlow 6s infinite alternate;
+}
+
+@keyframes gameGlow {
+    0% {
+        background-color: rgb(23, 27, 31);
+        box-shadow: inset 0 0 80px rgba(0, 255, 100, 0.05);
+    }
+    25% {
+        background-color: rgb(25, 29, 35);
+        box-shadow: inset 0 0 90px rgba(0, 220, 90, 0.07);
+    }
+    50% {
+        background-color: rgb(20, 24, 30);
+        box-shadow: inset 0 0 100px rgba(255, 100, 50, 0.09);
+    }
+    75% {
+        background-color: rgb(22, 26, 32);
+        box-shadow: inset 0 0 90px rgba(0, 200, 80, 0.07);
+    }
+    100% {
+        background-color: rgb(18, 22, 28);
+        box-shadow: inset 0 0 80px rgba(0, 240, 95, 0.05);
+    }
+}
+/* Neon Glowing Title */
+.game-title {
+    font-size: 3rem;
+    color: rgb(100, 255, 150);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+    animation: titleGlow 2s infinite alternate;
+    text-shadow: 
+        0 0 10px rgb(100, 255, 150),
+        0 0 20px rgb(100, 255, 150),
+        0 0 30px rgb(100, 255, 150);
+}
+
+@keyframes titleGlow {
+    0% {
+        text-shadow: 
+            0 0 10px rgb(100, 255, 150),
+            0 0 20px rgb(100, 255, 150),
+            0 0 30px rgb(100, 255, 150);
+        transform: scale(1);
+    }
+    100% {
+        text-shadow: 
+            0 0 15px rgb(100, 255, 150),
+            0 0 30px rgb(100, 255, 150),
+            0 0 45px rgb(100, 255, 150);
+        transform: scale(1.02);
+    }
+}
+
+.btn {
+     width :200px;
+     height: 100px;
+     display:flex;
+     align-items: center;
+     justify-content: center;
+}
+
+button {
+     font-size :20px;
+     padding:5px;
+     color: white;
+     background: transparent;
+     border:none;
+     width:100px;
+     padding:15px;
+     box-shadow: 2px 2px 10px rgb(0, 0, 0) , -2px -2px 10px black , -2px -2px 10px black , -2px -2px 10px black;
+     transition: all 0.2s;
+     cursor:pointer;
+}
+
+button:hover {
+     box-shadow:inset 2px 2px 10px rgb(0, 0, 0);
+     font-size:small;
+}
+
+.board {
+     
+     width :80vw;
+     max-width: 500px;
+     height: 500px;
+     background-color: transparent;
+     box-shadow: 2px 2px 10px black , -2px -2px 10px black , -2px -2px 10px black , -2px -2px 10px black;
+     display:grid;
+     grid-template-rows: repeat(14 , 1fr);
+     grid-template-columns: repeat(14 , 1fr);
+     padding:10px;
+     margin-top:20px;
+}
+
+/* Snake body - totally green */
+#div0 {
+    background-color: rgb(0, 200, 80); /* Green for snake body */
+    border-radius: 50% 30% 30% 50%; /* Oval shape for snake segments */
+    margin: 1px; /* Small gap between segments */
+    box-shadow: 
+        inset 0 0 5px rgba(0, 180, 70, 0.5),
+        0 0 3px rgba(0, 220, 90, 0.3);
+    position: relative;
+}
+
+/* Snake body segments after first */
+#div0:not(:first-of-type) {
+    border-radius: 30%; /* More rounded segments for body */
+}
+
+/* Snake segments connection effect */
+#div0 + #div0 {
+    margin-left: -2px; /* Overlap segments slightly for connected look */
+}
+
+/* Snake head - light green */
+.snakeHead {
+    background-color: rgb(100, 255, 150); /* Light green for snake head */
+    border-radius: 40% 50% 50% 40%; /* More head-like shape */
+    box-shadow: 
+        0 0 10px rgba(100, 255, 150, 0.7),
+        inset 0 0 8px rgba(255, 255, 255, 0.3);
+    position: relative;
+    z-index: 1; /* Make head appear above body */
+}
+
+/* Add eyes to snake head */
+.snakeHead::before,
+.snakeHead::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 50%;
+    top: 30%;
+    box-shadow: 0 0 3px rgb(0, 0, 0);
+}
+
+.snakeHead::before {
+    left: 25%; /* Left eye */
+}
+
+.snakeHead::after {
+    right: 25%; /* Right eye */
+}
+
+/* Snake tail - last segment */
+#div0:last-of-type {
+    border-radius: 30% 50% 50% 30%; /* Tapered tail end */
+    background-color: rgb(0, 180, 70); /* Slightly darker green for tail */
+    transform: scale(0.9); /* Smaller tail */
+}
+
+/* Food - red/orange */
+.food {
+     background-color: rgb(255, 100, 50); /* Red/Orange for food */
+     border-radius: 50% 40% 50% 40%; /* Berry-like shape */
+     animation: foodGlow 2s infinite alternate;
+     position: relative;
+     box-shadow: 
+         0 0 15px rgba(255, 100, 50, 0.6),
+         inset 0 0 10px rgba(255, 120, 60, 0.4);
+}
+
+/* Add small stem to food */
+.food::before {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 8px;
+    background-color: rgb(150, 255, 150);
+    border-radius: 2px;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes foodGlow {
+    0% {
+        box-shadow: 
+            0 0 8px rgb(255, 100, 50),
+            0 0 12px rgba(255, 100, 50, 0.5),
+            inset 0 0 8px rgba(255, 120, 60, 0.3);
+        transform: scale(0.95) rotate(0deg);
+    }
+    50% {
+        box-shadow: 
+            0 0 15px rgb(255, 100, 50),
+            0 0 20px rgba(255, 100, 50, 0.6),
+            inset 0 0 10px rgba(255, 120, 60, 0.5);
+        transform: scale(1.05) rotate(5deg);
+    }
+    100% {
+        box-shadow: 
+            0 0 10px rgb(255, 100, 50),
+            0 0 16px rgba(255, 100, 50, 0.5),
+            inset 0 0 9px rgba(255, 120, 60, 0.4);
+        transform: scale(1) rotate(-5deg);
+    }
+}
+
+.keys {
+    width:100%;
+    height:100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:10px;
+}
+
+/* Hide keys by default */
+.up , .down  , .left , .right {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 25%;
+    height:90%;
+    background: transparent;
+    box-shadow:2px 2px 10px black;
+}
+
+.up:hover , .down:hover  , .left:hover , .right:hover {
+    box-shadow:inset 2px 2px 10px rgb(0, 0, 0);
+    font-size:small;
+}
+
+/* Show keys on small screens */
+@media (max-width:900px) {
+    .game-title {
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+}
+    .board {
+         height:400px;
+         margin-top: 0px;
+         /* Animation to indicate responsiveness */
+         animation: boardResize 2s ease;
+    }
+
+    @keyframes boardResize {
+        0% {
+            transform: scale(0.95);
+        }
+        50% {
+            transform: scale(1.05);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    body {
+         justify-content: start;
+         padding:20px;
+         /* More pronounced animation on mobile */
+         animation: gameGlow 4s infinite alternate;
+    }
+
+    .up , .down  , .left , .right {
+         display:flex;
+         /* Animation for keys appearing */
+         animation: keyAppear 0.5s ease;
+    }
+
+    @keyframes keyAppear {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
+/* Additional animation for responsiveness indication */
+@media (max-width:600px) {
+    .game-title {
+    font-size: 2rem;
+    text-shadow: 
+        0 0 8px rgb(100, 255, 150),
+        0 0 16px rgb(100, 255, 150),
+        0 0 24px rgb(100, 255, 150);
+}
+    .board {
+        animation: mobilePulse 3s infinite alternate;
+    }
+    
+    @keyframes mobilePulse {
+        0% {
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        100% {
+            box-shadow: 2px 2px 20px rgba(100, 255, 150, 0.3), 
+                        -2px -2px 20px rgba(100, 255, 150, 0.2);
+        }
+    }
+}
