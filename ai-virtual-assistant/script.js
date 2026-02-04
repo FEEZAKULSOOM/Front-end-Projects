@@ -6,9 +6,9 @@ let voice = document.querySelector("#voice");
 function speak(text) {
   let utter = new SpeechSynthesisUtterance(text);
   utter.rate = 1;
-  utter.pitch = 1.2; // slightly higher for girl voice
+  utter.pitch = 1; // slightly higher for girl voice
   utter.volume = 1;
-  utter.lang = "en-US";
+  utter.lang = "hi-GB";
   window.speechSynthesis.speak(utter);
 }
 
@@ -67,7 +67,7 @@ function takeCommand(message) {
 
   // Responses
   if (message.includes("hello")) {
-    speak("Hello, Master!");
+    speak("Hello, Master!How can i help you today!");
   }
   else if (message.includes("who are you")) {
     speak("I am a virtual assistant created by Fiza Fareed!");
@@ -137,3 +137,4 @@ else {
                    
 
  }    
+
