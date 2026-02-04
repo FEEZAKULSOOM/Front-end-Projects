@@ -1,105 +1,109 @@
 let btn = document.querySelector("#btn");
 let content = document.querySelector("#content");
-let voice   = document.querySelector("#voice");
+let voice = document.querySelector("#voice");
 
-
-
+// Speak function with girl voice
 function speak(text) {
-  let text_speech = new SpeechSynthesisUtterance(text);
-  text_speech.rate = 1;
-  text_speech.pitch = 1;
-  text_speech.volume = 1;
-  
-  text_speech.lang = "hi-GB";
-  window.speechSynthesis.speak(text_speech);
+  let utter = new SpeechSynthesisUtterance(text);
+  utter.rate = 1;
+  utter.pitch = 1.2; // slightly higher for girl voice
+  utter.volume = 1;
+  utter.lang = "en-US";
+  window.speechSynthesis.speak(utter);
 }
 
+// Greeting function
 function wishMe() {
-  let day = new Date();
-  let hours = day.getHours();
-  let greeting;
+  let hours = new Date().getHours();
+  let greeting = "";
 
   if (hours >= 0 && hours < 12) {
-    greeting = "Good Morning Master";
+    greeting = "Good Morning, Master!";
   } else if (hours >= 12 && hours < 16) {
-    greeting = "Good Afternoon Master";
+    greeting = "Good Afternoon, Master!";
   } else {
-    greeting = "Good Evening Master";
+    greeting = "Good Evening, Master!";
   }
 
-   // show on page
-  speak(greeting);                  // speak it
+  speak(greeting);
 }
-  let greeted=false;
-// Only run after user clicks the button
-btn.addEventListener("click", () => {
 
+let greeted = false;
+
+// Button click: greet first, then start recognition
+btn.addEventListener("click", () => {
   if (!greeted) {
-    wishMe();
-   
+    wishMe(); // Speak greeting
     greeted = true;
+    return;   // stop here to prevent immediate command execution
   }
+
+  recognition.start();
+  btn.style.display = "none";
+  voice.style.display = "block";
 });
 
-let speechRecognition= window.SpeechRecognition || window.webkitSpeechRecognition;
- let recognition =  new speechRecognition();
- recognition.onresult=((event) => {
-  let currentIndex=event.resultIndex;
-  let transcript=event.results[currentIndex][0].transcript;
-  content.innerText=transcript;
-   takeCommand(transcript.toLowerCase());
- });
+// Speech recognition setup
+let speechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+let recognition = new speechRecognition();
 
- btn.addEventListener("click" , ()=> {
-  recognition.start();
-  btn.style.display="none";
-  voice.style.display="block";
+recognition.onresult = (event) => {
+  let currentIndex = event.resultIndex;
+  let transcript = event.results[currentIndex][0].transcript;
+  content.innerText = transcript;
+  takeCommand(transcript.toLowerCase());
+};
 
+// Main command function
+function takeCommand(message) {
+  btn.style.display = "flex";
+  voice.style.display = "none";
 
- })
+  // Ignore greeting messages so they don't trigger search
+  const greetings = ["good morning", "good afternoon", "good evening"];
+  if (greetings.some(g => message.includes(g))) {
+    return;
+  }
 
- function takeCommand(message) {
-    btn.style.display="flex";
-  voice.style.display="none";
-   if(message.includes("hello")) {
-     speak("hello , fiza how can I help you!");
-   }
-   else if  (message.includes("who are you")) {
-     speak("I am a virtual assistant created by Fiza Fareed!");
-    
-   }
-    else if (message.includes("open youtube")) {
-      speak("opening Youtube..")
-      window.open("https://www.youtube.com/");
-    }
-    else if (message.includes("open google")) {
-      speak("opening google..")
-      window.open("https://www.google.com/");
-    }
-    else if (message.includes("open instagram")) {
-      speak("opening instagram..")
-      window.open("https://www.instagram.com/");
-    }
-    else if (message.includes("open facebook")) {
-      speak("opening facebook..")
-      window.open("https://www.facebook.com/");
-    }
-    else if (message.includes("open calculator")) {
-      speak("opening calculator..")
-      window.open("Calculator://");
-    }
-    else if (message.includes("open whatsapp")) {
-      speak("opening whatsapp..")
-      window.open("Whatsapp://");
-    }
-    else if (message.includes("time")) {
-     let time= new Date().toLocaleString(undefined ,{hour:"numeric" , minute :"numeric"});
-     speak(time);
-    }
-    else if (message.includes("date")) {
-     let date= new Date().toLocaleString(undefined ,{day:"numeric" , month:"short"});
-     speak(date);
-    }
+  // Responses
+  if (message.includes("hello")) {
+    speak("Hello, Master!");
+  }
+  else if (message.includes("who are you")) {
+    speak("I am a virtual assistant created by Fiza Fareed!");
+  }
+  else if (message.includes("open youtube")) {
+    speak("Opening YouTube..");
+    window.open("https://www.youtube.com/");
+  }
+  else if (message.includes("open google")) {
+    speak("Opening Google..");
+    window.open("https://www.google.com/");
+  }
+  else if (message.includes("open instagram")) {
+    speak("Opening Instagram..");
+    window.open("https://www.instagram.com/");
+  }
+  else if (message.includes("open facebook")) {
+    speak("Opening Facebook..");
+    window.open("https://www.facebook.com/");
+  }
+  else if (message.includes("open calculator")) {
+    speak("Opening calculator..");
+    window.open("Calculator://");
+  }
+  else if (message.includes("open whatsapp")) {
+    speak("Opening WhatsApp..");
+    window.open("Whatsapp://");
+  }
+  else if (message.includes("time")) {
+    let time = new Date().toLocaleString(undefined, { hour: "numeric", minute: "numeric" });
+    speak(time);
+  }
+  else if (message.includes("date")) {
+    let date = new Date().toLocaleString(undefined, { day: "numeric", month: "short" });
+    speak(date);
+  }
 
 
 else {
@@ -131,4 +135,5 @@ else {
 
 
                    
+
  }    
